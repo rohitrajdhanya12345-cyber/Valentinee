@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Madam Ji ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;}
+body{overflow:hidden;color:white;text-align:center;}
+
+/* HEARTBEAT BACKGROUND PULSE */
+body::after{
+content:"";
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:radial-gradient(circle,rgba(255,0,90,0.15),transparent);
+animation:heartbeat 2s infinite;
+pointer-events:none;
+}
+@keyframes heartbeat{
+0%{opacity:.2;transform:scale(1);}
+50%{opacity:.5;transform:scale(1.03);}
+100%{opacity:.2;transform:scale(1);}
+}
+
+/* VIDEO BACKGROUND */
+video{
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+object-fit:cover;
+z-index:-2;
+}
+.overlay{
+position:fixed;
+width:100%;height:100%;
+background:rgba(0,0,0,0.55);
+z-index:-1;
+}
+
+/* INTRO */
+.intro{
+position:absolute;
+height:100vh;width:100%;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+background:black;
+z-index:5;
+}
+.intro h1{
+font-family:'Great Vibes';
+font-size:55px;
+color:#ff7aa2;
+margin-bottom:20px;
+animation:breath 3s infinite;
+}
+@keyframes breath{
+0%,100%{text-shadow:0 0 15px #ff4b7d;}
+50%{text-shadow:0 0 40px #ff99b8;}
+}
+
+.enterBtn{
+padding:14px 30px;
+border:none;
+border-radius:30px;
+background:#ff4b7d;
+color:white;
+font-size:18px;
+cursor:pointer;
+}
+
+/* MAIN CARD */
+.container{
+display:none;
+position:absolute;
+top:50%;left:50%;
+transform:translate(-50%,-50%);
+width:90%;max-width:720px;
+padding:40px;
+border-radius:20px;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(15px);
+box-shadow:0 0 40px rgba(255,0,120,0.5);
+animation:fadeIn 2s ease;
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translate(-50%,-40%);}
+to{opacity:1;transform:translate(-50%,-50%);}
+}
+
+/* GLOW */
+.glow{
+color:#ff7aa2;
+animation:glow 2s infinite alternate;
+}
+@keyframes glow{
+from{text-shadow:0 0 10px #ff4b7d;}
+to{text-shadow:0 0 30px #ff99b8,0 0 50px #ff4b7d;}
+}
+
+.typing{margin-top:15px;font-size:20px;min-height:60px;}
+
+button{
+margin-top:18px;
+padding:12px 24px;
+border:none;
+border-radius:30px;
+background:#ff4b7d;
+color:white;
+cursor:pointer;
+margin-right:8px;
+}
+
+.letter{display:none;margin-top:20px;font-size:18px;line-height:1.7;}
+
+/* ROSE PETALS */
+.petal{
+position:fixed;
+top:-20px;
+font-size:22px;
+animation:fall linear infinite;
+}
+@keyframes fall{
+to{transform:translateY(110vh) rotate(360deg);}
+}
+
+/* LOVE EXPLOSION */
+.explosion{
+position:fixed;
+top:50%;left:50%;
+transform:translate(-50%,-50%) scale(0);
+font-size:65px;
+font-family:'Great Vibes';
+color:#ff7aa2;
+text-shadow:0 0 40px red;
+opacity:0;
+transition:1.2s;
+z-index:10;
+}
+.showExplosion{
+transform:translate(-50%,-50%) scale(1.6);
+opacity:1;
+}
+
+/* CINEMATIC END */
+.endScene{
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:'Great Vibes';
+font-size:50px;
+color:#ff7aa2;
+opacity:0;
+pointer-events:none;
+transition:2s;
+z-index:20;
+}
+.showEnd{
+opacity:1;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- VIDEO -->
+<video autoplay muted loop>
+<source src="https://cdn.coverr.co/videos/coverr-a-couple-walking-on-the-beach-1573/1080p.mp4">
+</video>
+<div class="overlay"></div>
+
+<!-- INTRO -->
+<div class="intro" id="intro">
+<h1>❤️ A Special Surprise ❤️</h1>
+<button class="enterBtn" onclick="startLove()">Enter My Heart</button>
+</div>
+
+<!-- MUSIC -->
+<audio id="music" loop>
+<source src="https://www2.cs.uic.edu/~i101/SoundFiles/LoveMeTender.wav">
+</audio>
+
+<!-- MAIN -->
+<div class="container" id="main">
+<h1>Happy Valentine’s Day<br>
+<span class="glow">Meri Madam Ji</span>
+</h1>
+
+<div class="typing" id="typing"></div>
+
+<button onclick="showLetter()">Open My Heart 💌</button>
+<button onclick="loveExplosion()">Final Surprise ❤️</button>
+
+<div class="letter" id="letter">
+<p>
+Aap meri zindagi ki sabse khoobsurat feeling ho…  
+Aur mera dil sirf ek naam jaanta hai — <b class="glow">aapka</b>.  
+
+Hamesha…  
+<b class="glow">Rohit</b> ❤️
+</p>
+</div>
+</div>
+
+<div class="explosion" id="boom">I ❤️ LOVE YOU</div>
+<div class="endScene" id="endScene">Forever Rohit ❤️ Madam Ji</div>
+
+<script>
+
+/* START */
+function startLove(){
+intro.style.display="none";
+main.style.display="block";
+music.play();
+}
+
+/* TYPING */
+const text="Aaj ka din sirf ek reason se special hai... kyunki aap meri life me ho ❤️";
+let i=0;
+function typing(){
+if(i<text.length){
+typing.innerHTML+=text.charAt(i);
+i++;
+setTimeout(typing,40);
+}}
+typing();
+
+/* LETTER */
+function showLetter(){
+letter.style.display="block";
+}
+
+/* ROSE PETALS */
+function createPetal(){
+const petal=document.createElement("div");
+petal.className="petal";
+petal.innerHTML="🌹";
+petal.style.left=Math.random()*100+"vw";
+petal.style.animationDuration=(5+Math.random()*5)+"s";
+document.body.appendChild(petal);
+setTimeout(()=>petal.remove(),9000);
+}
+setInterval(createPetal,300);
+
+/* FINAL LOVE EFFECT */
+function loveExplosion(){
+boom.classList.add("showExplosion");
+
+setTimeout(()=>{
+document.getElementById("endScene").classList.add("showEnd");
+},4000);
+}
+
+</script>
+
+</body>
+</html>
